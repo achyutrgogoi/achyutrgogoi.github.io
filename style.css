@@ -308,7 +308,7 @@ main > * {
 
 /* Parallax header */
 header.parallax-header {
-  background-image: url('profile.jpg');
+  background-image: url('header-bg.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -392,4 +392,21 @@ footer .social a:hover {
 [data-theme="dark"] {
   --color-card-bg: #1F2937;
   --color-card-shadow: rgba(0,0,0,0.2);
+}
+
+
+/* Mobile: keep nav links in one row with optional scroll */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: row !important;      /* force a row layout */
+    justify-content: flex-start;        /* left-align them */
+    overflow-x: auto;                   /* allow scrolling if too many */
+    -webkit-overflow-scrolling: touch;  /* smooth scroll on iOS */
+  }
+  nav a {
+    display: inline-block;   /* keep each link inline */
+    white-space: nowrap;     /* prevent wrapping */
+    margin-right: 1rem;      /* space between items */
+    padding: 0.75rem 0;      /* vertical padding for tap targets */
+  }
 }
