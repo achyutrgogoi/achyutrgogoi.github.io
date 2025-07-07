@@ -1,62 +1,47 @@
-
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Contact Achyut Ranjan Gogoi</title>
-<link href="style.css" rel="stylesheet"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Achyut Ranjan Gogoi</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="header-profile">
-    <img src="profile.jpg" alt="Achyut Ranjan Gogoi Photo" class="profile-photo"/>
-    <div>
-      <h1>Achyut Ranjan Gogoi</h1>
-      <div class="tagline">Computational Chemist driving innovation in Fe catalysis for pharmaceuticals</div>
-      <a class="cta-btn" href="hireme.html">Hire Me</a>
-      <a class="cta-btn" href="CV_AchyutGogoi.pdf" target="_blank">Download CV</a>
+
+<header id="siteHeader" class="site-header">
+  <div class="header-container">
+    <div class="header-profile">
+      <img src="profile.jpg" alt="Achyut Ranjan Gogoi" class="profile-photo">
+      <div class="header-text">
+        <h1>Achyut Ranjan Gogoi</h1>
+        <p class="tagline">Computational Chemist driving innovation in Fe catalysis for pharmaceuticals</p>
+        <div class="header-buttons">
+          <a href="hireme.html" class="btn">Hire Me</a>
+          <a href="CV_AchyutGogoi.pdf" class="btn">Download CV</a>
+        </div>
+      </div>
     </div>
   </div>
+  <nav id="siteNav" class="navbar">
+    <div class="nav-container">
+      <span class="nav-logo">A R Gogoi</span>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About</a>
+        <a href="research.html" class="nav-item">Research</a>
+        <a href="publications.html" class="nav-item">Publications</a>
+        <a href="projects.html" class="nav-item">Projects</a>
+        <a href="news.html" class="nav-item">News</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+        <a href="hireme.html" class="nav-item">Hire Me</a>
+      </div>
+    </div>
+  </nav>
 </header>
-<nav class="navbar">
-  <div class="nav-container">
-    <span class="nav-logo">A R Gogoi</span>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
-    <div class="nav-menu" id="navMenu">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="research.html">Research</a>
-      <a href="publications.html">Publications</a>
-      <a href="projects.html">Projects</a>
-      <a href="news.html">News</a>
-      <a href="contact.html">Contact</a>
-      <a href="hireme.html">Hire Me</a>
-    </div>
-  </div>
-</nav>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var navToggle = document.getElementById('navToggle');
-  var navMenu   = document.getElementById('navMenu');
-  navToggle.addEventListener('click', function() {
-    navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-  });
-  navMenu.querySelectorAll('a').forEach(function(link){
-    link.addEventListener('click', function(){
-      navMenu.classList.remove('active');
-      navToggle.classList.remove('active');
-    });
-  });
-});
-</script>
-
-
 
 <main>
+
 <section>
 <h2>Contact Me</h2>
 <form action="#" class="contact-form" method="POST">
@@ -72,7 +57,35 @@ document.addEventListener('DOMContentLoaded', function() {
 <a href="https://github.com/yourusername" target="_blank" title="GitHub">GH</a>
 </div>
 </section>
+
 </main>
 <footer>© 2025 Achyut Ranjan Gogoi. All rights reserved.</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.getElementById('siteHeader');
+  const nav = document.getElementById('siteNav');
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+  let lastScroll = 0;
+
+  // Toggle mobile menu
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('active');
+  });
+
+  // Hide header on scroll down, show on scroll up
+  window.addEventListener('scroll', () => {
+    const current = window.pageYOffset;
+    if (current > lastScroll && current > header.offsetHeight) {
+      header.classList.add('hidden');
+    } else {
+      header.classList.remove('hidden');
+    }
+    lastScroll = current;
+  });
+});
+</script>
+
 </body>
 </html>
