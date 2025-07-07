@@ -3,6 +3,8 @@
 
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Contact Achyut Ranjan Gogoi</title>
@@ -29,6 +31,20 @@
 <a href="contact.html">Contact</a>
 <a href="hireme.html">Hire Me</a>
 </nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('header nav a');
+  links.forEach(a => {
+    if (a.pathname === window.location.pathname) {
+      a.classList.add('active');
+    } else {
+      a.classList.remove('active');
+    }
+  });
+});
+</script>
+
 </header>
 <main>
 <section>
