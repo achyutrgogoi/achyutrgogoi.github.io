@@ -430,6 +430,19 @@ section .testimonial {
 
 
 /* Mobile: shrink nav tabs to fit on one line without scroll */
+
+  header nav a {
+    flex: 1 1 auto !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    padding: 0.5rem 0 !important;
+    font-size: 0.85rem !important;
+    margin: 0 !important;
+  }
+}
+
+
+/* Mobile Navigation: single horizontal row with shrink */
 @media (max-width: 600px) {
   header nav {
     display: flex !important;
@@ -444,7 +457,7 @@ section .testimonial {
     text-align: center !important;
     white-space: nowrap !important;
     padding: 0.5rem 0 !important;
-    font-size: 0.85rem !important;
     margin: 0 !important;
+    font-size: 0.85rem !important;
   }
 }
