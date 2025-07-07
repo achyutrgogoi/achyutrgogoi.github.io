@@ -37,3 +37,30 @@ footer{text-align:center;padding:16px;background:linear-gradient(90deg,#56ccf2 0
 @media (max-width:450px){
   .nav-logo { font-size: 0.99em; }
 }
+
+/* Desktop-optimized layout */
+@media (min-width: 1024px) {
+  header .header-profile {
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  header .header-profile .profile-photo {
+    width: 200px;
+    height: 200px;
+  }
+  main {
+    max-width: 1200px;
+    margin: 1rem auto 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  /* For large screens, make triple columns on Publications & Projects */
+  .publications main, .projects main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
