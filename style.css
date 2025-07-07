@@ -1,4 +1,106 @@
 
+/* ========== Variables & Global Styles ========== */
+:root {
+  --clr-bg: #f9faff;
+  --clr-primary: #1f4e79;
+  --clr-secondary: #00b4d8;
+  --clr-light: #ffffff;
+  --clr-dark: #232946;
+  --ff-heading: 'Merriweather', serif;
+  --ff-body: 'Inter', sans-serif;
+  --transition-fast: 0.2s ease-out;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:ital,wght@0,400;0,700&display=swap');
+
+body {
+  margin:0; padding:0;
+  font-family: var(--ff-body), sans-serif;
+  line-height: 1.6;
+  background: var(--clr-bg);
+  color: var(--clr-dark);
+  overflow-x: hidden;
+}
+
+/* ========== Header & Nav ========== */
+header {
+  position: fixed;
+  top:0; left:0; right:0;
+  background: rgba(31,78,121,0.8);
+  backdrop-filter: blur(8px);
+  padding: 1rem 2rem;
+  display:flex; align-items:center; justify-content:space-between;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+header.hidden {
+  transform: translateY(-100%);
+}
+.header-profile { display:flex; align-items:center; gap:1rem; }
+.profile-photo {
+  width:60px; height:60px; border-radius:50%;
+  object-fit:cover; border:2px solid var(--clr-light);
+}
+.tagline { font-family: var(--ff-body); color: var(--clr-secondary); font-size:0.9rem; }
+nav { display:flex; gap:1rem; }
+nav a {
+  color: var(--clr-light); text-decoration:none;
+  padding:0.5rem 1rem; border-radius:0.5rem;
+  transition: background var(--transition-fast);
+}
+nav a:hover, nav a.active { background: rgba(255,255,255,0.2); }
+
+/* Mobile nav toggle */
+.nav-toggle {
+  display:none; background:none; border:none;
+  color: var(--clr-light); font-size:1.5rem; cursor:pointer;
+}
+@media(max-width: 768px) {
+  nav { display:none; position:fixed; top:0; right:0; height:100vh;
+        width:70vw; background: var(--clr-bg); flex-direction:column;
+        padding:2rem 1rem; }
+  nav.active { display:flex; }
+  .nav-toggle { display:block; }
+}
+
+/* ========== Main & Sections ========== */
+main {
+  padding: 6rem 2rem 2rem; max-width:1200px; margin:0 auto;
+  display:grid; gap:2rem;
+}
+@media(min-width:800px) {
+  main { grid-template-columns: repeat(2,1fr); }
+}
+.card {
+  background: var(--clr-light); border-radius:0.75rem;
+  box-shadow:0 4px 16px rgba(0,0,0,0.08);
+  padding:1.5rem; transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  opacity:0; transform: translateY(30px);
+}
+.card.in-view { opacity:1; transform:none; }
+.card:hover { transform:translateY(-4px); box-shadow:0 8px 32px rgba(0,0,0,0.12); }
+
+/* ========== Buttons ========== */
+.cta-btn {
+  display:inline-block; padding:0.7rem 1.5rem; border-radius:2rem;
+  background: var(--clr-secondary); color: var(--clr-light);
+  text-decoration:none; font-weight:600;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.cta-btn:hover {
+  transform: scale(1.05); box-shadow:0 0 12px var(--clr-secondary);
+}
+
+/* ========== Footer ========== */
+footer {
+  text-align:center; padding:1rem; background:var(--clr-primary);
+  color: var(--clr-light); font-size:0.9rem;
+}
+
+/* ========== Science Background ========== */
+/* omitted for brevity (use existing SVG/CSS) */
+
+/* existing CSS... */
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
 body {font-family:'Montserrat',Arial,sans-serif;margin:0;padding:0;background:linear-gradient(120deg,#f5f7fa 0%,#c9e8fa 100%);color:#232946;min-height:100vh;}
 header{background:linear-gradient(90deg,#1864ab 0%,#56ccf2 100%);color:#fff;padding:2.5rem 0 1.3rem;text-align:center;box-shadow:0 2px 20px rgba(24,100,171,0.15);position:sticky;top:0;z-index:100;}
