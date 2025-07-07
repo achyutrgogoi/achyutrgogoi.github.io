@@ -1,49 +1,63 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Achyut Ranjan Gogoi</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Achyut Ranjan Gogoi</title>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
-    <header>
-        <div class="header-profile">
-            <img src="profile.jpg" alt="Achyut Ranjan Gogoi Photo" class="profile-photo">
-            <div>
-                <h1>Achyut Ranjan Gogoi</h1>
-                <div class="tagline">Let's connect!</div>
-            </div>
-        </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="research.html">Research</a>
-            <a href="publications.html">Publications</a>
-            <a href="projects.html">Projects</a>
-            <a href="news.html">News</a>
-            <a href="contact.html" class="active">Contact</a>
-            <a href="hireme.html">Hire Me</a>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h2>Contact Me</h2>
-            <form class="contact-form" action="#" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-            <div class="social-icons">
-                <a href="mailto:youremail@example.com" title="Email">&#9993;</a>
-                <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn">in</a>
-                <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID">ORCID</a>
-                <a href="https://github.com/yourusername" target="_blank" title="GitHub">GH</a>
-            </div>
-        </section>
-    </main>
-    <footer>&copy; 2025 Achyut Ranjan Gogoi. All rights reserved.</footer>
+<nav class="navbar">
+<div class="nav-container">
+<span class="nav-logo" style="font-weight:700;color:#2363a9;letter-spacing:0.04em;">A R Gogoi</span>
+<button aria-label="Open Menu" class="nav-toggle" id="navToggle">☰</button>
+<div class="nav-menu" id="navMenu">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="research.html">Research</a>
+<a href="publications.html">Publications</a>
+<a href="projects.html">Projects</a>
+<a href="news.html">News</a>
+<a href="contact.html">Contact</a>
+<a href="hireme.html">Hire Me</a>
+</div>
+</div>
+</nav>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var navToggle = document.getElementById('navToggle');
+    var navMenu = document.getElementById('navMenu');
+    navToggle.onclick = function() {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    };
+    // Close on link click (mobile)
+    navMenu.querySelectorAll('a').forEach(function(link){
+        link.onclick = function(){ navMenu.classList.remove('active'); navToggle.classList.remove('active'); };
+    });
+});
+</script>
+
+
+<main>
+<section>
+<h2>Contact Me</h2>
+<form action="#" class="contact-form" method="POST">
+<input name="name" placeholder="Your Name" required="" type="text"/>
+<input name="email" placeholder="Your Email" required="" type="email"/>
+<textarea name="message" placeholder="Your Message" required="" rows="5"></textarea>
+<button type="submit">Send Message</button>
+</form>
+<div class="social-icons">
+<a href="mailto:youremail@example.com" title="Email">✉</a>
+<a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn">in</a>
+<a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID">ORCID</a>
+<a href="https://github.com/yourusername" target="_blank" title="GitHub">GH</a>
+</div>
+</section>
+</main>
+<footer>© 2025 Achyut Ranjan Gogoi. All rights reserved.</footer>
 </body>
 </html>
