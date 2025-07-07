@@ -9,9 +9,11 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Achyut Ranjan Gogoi - Home</title>
 <link href="style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 </head>
 <body>
-<header>
+<header class="parallax-header">
+  <div class="parallax-overlay"></div>
 <div class="header-profile">
 <img alt="Achyut Ranjan Gogoi Photo" class="profile-photo" src="profile.jpg"/>
 <div>
@@ -30,6 +32,15 @@
 <a href="news.html">News</a>
 <a href="contact.html">Contact</a>
 <a href="hireme.html">Hire Me</a>
+  
+  
+
+  <div class="theme-switch-wrapper">
+    <label class="theme-switch">
+      <input type="checkbox" id="theme-switch">
+      <span class="slider"></span>
+    </label>
+  </div>
 </nav>
 
 <script>
@@ -54,5 +65,120 @@ document.addEventListener('DOMContentLoaded', () => {
 </section>
 </main>
 <footer>© 2025 Achyut Ranjan Gogoi. All rights reserved.</footer>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">Home</a> |
+      <a href="about.html">About</a> |
+      <a href="research.html">Research</a> |
+      <a href="publications.html">Publications</a> |
+      <a href="projects.html">Projects</a> |
+      <a href="news.html">News</a> |
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="social">
+      <a href="#" aria-label="LinkedIn">🔗</a>
+      <a href="#" aria-label="GitHub">🐙</a>
+    </div>
+    <p>&copy; 2025 Achyut Ranjan Gogoi. All rights reserved.</p>
+  </footer>
+  <button id="back-to-top" title="Back to top">↑</button>
+
+  
+  <!-- AOS animations, dark mode toggle, back-to-top, active nav -->
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        if (window.AOS) {
+          document.querySelectorAll('main > *').forEach(el => el.setAttribute('data-aos', 'fade-up'));
+          AOS.init({ once: true, duration: 600 });
+        }
+      } catch (e) {
+        console.warn('AOS init failed', e);
+      }
+      // Dark mode toggle
+      const toggle = document.getElementById('dark-mode-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme');
+          const theme = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+        });
+      }
+      const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', saved);
+      // Back to top button
+      const backBtn = document.getElementById('back-to-top');
+      if (backBtn) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) backBtn.classList.add('show');
+          else backBtn.classList.remove('show');
+        });
+        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      }
+      // Active nav link
+      document.querySelectorAll('header nav a').forEach(a => {
+        if (a.pathname === window.location.pathname) a.classList.add('active');
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize AOS on main children
+      document.querySelectorAll('main > *').forEach(el => el.setAttribute('data-aos', 'fade-up'));
+      AOS.init({ once: true, duration: 600 });
+      // Dark mode toggle
+      const toggle = document.getElementById('dark-mode-toggle');
+      toggle.addEventListener('click', () => {
+        const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      });
+      const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', saved);
+      // Back to top button
+      const backBtn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) backBtn.classList.add('show');
+        else backBtn.classList.remove('show');
+      });
+      backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      // Active nav link
+      document.querySelectorAll('header nav a').forEach(a => {
+        if (a.pathname === window.location.pathname) a.classList.add('active');
+      });
+    });
+  </script>
+
+
+  <!-- Core scripts: AOS, theme toggle, back-to-top, active nav -->
+  
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // AOS animations
+      if (window.AOS) {
+        document.querySelectorAll('main > *').forEach(el => el.setAttribute('data-aos','fade-up'));
+        AOS.init({ once:true, duration:600 });
+      }
+      // Theme switch logic
+      const switchEl = document.getElementById('theme-switch');
+      const current = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', current);
+      if (current === 'dark') switchEl.checked = true;
+      switchEl.addEventListener('change', function() {
+        if (switchEl.checked) {
+          document.documentElement.setAttribute('data-theme','dark');
+          localStorage.setItem('theme','dark');
+        } else {
+          document.documentElement.setAttribute('data-theme','light');
+          localStorage.setItem('theme','light');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
