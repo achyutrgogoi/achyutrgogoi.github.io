@@ -433,20 +433,30 @@ section .testimonial {
 }
 
 
-/* Mobile: horizontal nav without wrapping */
-@media (max-width: 600px) {
-  nav {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;           /* prevent wrapping */
-    overflow-x: auto !important;            /* allow scrolling if too many */
-    -webkit-overflow-scrolling: touch;       /* smooth scroll on iOS */
-    gap: 1rem;
-  }
+
   nav a {
     flex: 0 0 auto;                         /* prevent shrinking */
     white-space: nowrap;                    /* prevent text wrap */
     margin: 0;                              /* reset margin */
     padding: 0.75rem 0.5rem;                /* increase tap area */
+  }
+}
+
+
+/* Mobile: shrink nav tabs to fit on one line without scroll */
+@media (max-width: 600px) {
+  nav {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;           
+    justify-content: space-between !important;  /* spread evenly */
+    padding: 0 0.5rem;
+  }
+  nav a {
+    flex: 1 1 auto;                        /* allow shrinking */
+    text-align: center;                    
+    white-space: nowrap;                   
+    padding: 0.5rem 0;                     /* vertical padding */
+    font-size: 0.85rem;                    /* slightly smaller font */
   }
 }
