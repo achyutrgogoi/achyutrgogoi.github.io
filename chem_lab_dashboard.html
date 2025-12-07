@@ -128,12 +128,7 @@
     }
 
     .logo-ucla {
-      height: 34px;
-    }
-
-    .logo-lab {
-      height: 42px;
-      border-radius: 999px;
+      height: 38px;
     }
 
     .main-layout {
@@ -333,8 +328,8 @@
     }
 
     .attempt-chart-wrapper {
-      max-width: 120px;
-      height: 120px;
+      max-width: 110px;
+      height: 110px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -347,6 +342,66 @@
       width: 100% !important;
       height: 100% !important;
     }
+
+    /* Analysis section */
+
+    .analysis-layout {
+      margin-top: 16px;
+    }
+
+    .analysis-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 0.8rem;
+    }
+
+    .analysis-table thead {
+      background: #f3f4f6;
+    }
+
+    .analysis-table th,
+    .analysis-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .analysis-table th {
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .analysis-table td {
+      color: #4b5563;
+    }
+
+    .analysis-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .analysis-metric-pill {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .analysis-badge-high {
+      background: #ecfdf5;
+      border-color: #bbf7d0;
+      color: #166534;
+    }
+
+    .analysis-badge-low {
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: #b91c1c;
+    }
   </style>
 </head>
 <body>
@@ -355,14 +410,14 @@
       <div class="header-text">
         <h1><span class="mark-dot"></span>GUTIERREZ LAB SAFETY QUIZ</h1>
         <p class="subtitle">
-          Live overview of quiz participation and performance for Gutierrez Lab members.
+          Live overview of quiz participation, per-attempt performance, and per-question statistics.
         </p>
         <p class="subtitle-2">
           Department of Chemistry &amp; Biochemistry · University of California, Los Angeles
         </p>
       </div>
       <div class="brand-logos">
-        <!-- Update src paths to your actual filenames -->
+        <!-- Local UCLA logo file (same as quiz page) -->
         <img src="ucla-logo.png" alt="UCLA Logo" class="logo-ucla" />
       </div>
     </header>
@@ -375,57 +430,83 @@
           <div class="card-header">
             <div>
               <div class="card-title">Quiz questions</div>
-              <div class="card-subtitle">Reference for the Gutierrez Lab safety quiz</div>
+              <div class="card-subtitle">
+                Advanced UCLA laboratory safety topics currently in the quiz.
+              </div>
             </div>
           </div>
 
           <div class="question-list">
             <div class="question-item">
-              <div class="question-label">Q1 · PPE</div>
+              <div class="question-label">Q1 · Pyrophoric reagents</div>
               <div class="question-text">
-                Which of the following is the most appropriate footwear in a chemistry lab?
+                When handling pyrophoric reagents (such as t-BuLi), what does the UCLA safety manual require?
               </div>
             </div>
             <div class="question-item">
-              <div class="question-label">Q2 · PPE</div>
+              <div class="question-label">Q2 · Waste containers</div>
               <div class="question-text">
-                When should you wear safety goggles in the lab?
+                How should empty chemical containers be handled?
               </div>
             </div>
             <div class="question-item">
-              <div class="question-label">Q3 · Spills</div>
+              <div class="question-label">Q3 · SDS access</div>
               <div class="question-text">
-                What is the best first response if a chemical spill occurs on your skin?
+                What document must be accessible for every chemical in the lab?
               </div>
             </div>
             <div class="question-item">
-              <div class="question-label">Q4 · Technique</div>
+              <div class="question-label">Q4 · Gloves &amp; solvents</div>
               <div class="question-text">
-                How should you smell a chemical, if instructed to do so?
+                Which gloves are appropriate for handling halogenated solvents (e.g., dichloromethane)?
               </div>
             </div>
             <div class="question-item">
-              <div class="question-label">Q5 · Waste</div>
+              <div class="question-label">Q5 · Major spills</div>
               <div class="question-text">
-                Which waste should be placed in a designated organic waste container?
+                What is the required first action during a large chemical spill?
               </div>
             </div>
             <div class="question-item">
-              <div class="question-label">Q6 · Glassware</div>
+              <div class="question-label">Q6 · Restricted areas</div>
               <div class="question-text">
-                What is the correct action if you break a piece of glassware?
+                Which chemicals require a designated restricted-access area?
               </div>
             </div>
             <div class="question-item">
-              <div class="question-label">Q7 · Conduct</div>
+              <div class="question-label">Q7 · Cryogens</div>
               <div class="question-text">
-                Eating or drinking in the lab is:
+                When transporting cryogenic liquids, what is required?
               </div>
             </div>
             <div class="question-item">
-              <div class="question-label">Q8 · Preparation</div>
+              <div class="question-label">Q8 · Reproductive toxins</div>
               <div class="question-text">
-                Before starting any experiment, you should first:
+                What must be done if a lab member becomes pregnant and works with reproductive toxins?
+              </div>
+            </div>
+            <div class="question-item">
+              <div class="question-label">Q9 · Waste retention</div>
+              <div class="question-text">
+                What is the maximum period that chemical waste may remain in the laboratory?
+              </div>
+            </div>
+            <div class="question-item">
+              <div class="question-label">Q10 · Waste labeling</div>
+              <div class="question-text">
+                Chemical waste containers must be labeled when?
+              </div>
+            </div>
+            <div class="question-item">
+              <div class="question-label">Q11 · Peroxide-formers</div>
+              <div class="question-text">
+                A peroxide-forming chemical has crystals around the cap. What must you do?
+              </div>
+            </div>
+            <div class="question-item">
+              <div class="question-label">Q12 · Engineering controls</div>
+              <div class="question-text">
+                Work with volatile toxic chemicals must occur under which engineering control?
               </div>
             </div>
           </div>
@@ -436,7 +517,7 @@
           <div class="card-header">
             <div>
               <div class="card-title">Active users</div>
-              <div class="card-subtitle">Most recent logins</div>
+              <div class="card-subtitle">Most recent logins to the safety quiz.</div>
             </div>
             <span class="tag-pill" id="active-count">0 active</span>
           </div>
@@ -467,8 +548,29 @@
         </div>
       </div>
     </div>
+
+    <!-- ANALYSIS SECTION -->
+    <div class="analysis-layout">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Question analysis</div>
+            <div id="analysis-summary" class="card-subtitle">
+              Per-question performance statistics will appear here once quiz data is available.
+            </div>
+          </div>
+        </div>
+
+        <div id="analysis-content">
+          <p class="empty-message">
+            No quiz data yet. Once there are attempts, this section will show the percentage of correct responses for each question.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- Firebase & Chart.js -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -494,8 +596,42 @@
     const attemptsCount = document.getElementById("attempt-count");
     const noAttemptsMsg = document.getElementById("no-attempts-msg");
 
+    const analysisSummary = document.getElementById("analysis-summary");
+    const analysisContent = document.getElementById("analysis-content");
+
     const PASS_THRESHOLD = 70;
     let attemptCharts = [];
+
+    // Match quiz correct answers (q1–q12)
+    const correctAnswers = {
+      q1: "B",
+      q2: "B",
+      q3: "C",
+      q4: "B",
+      q5: "B",
+      q6: "B",
+      q7: "A",
+      q8: "B",
+      q9: "B",
+      q10: "B",
+      q11: "C",
+      q12: "B"
+    };
+
+    const questionLabels = {
+      q1: "Pyrophoric reagents",
+      q2: "Empty containers",
+      q3: "SDS access",
+      q4: "Gloves & solvents",
+      q5: "Major spills",
+      q6: "Restricted areas",
+      q7: "Cryogenic transport",
+      q8: "Reproductive toxins",
+      q9: "Waste retention time",
+      q10: "Waste labeling",
+      q11: "Peroxide-formers",
+      q12: "Engineering controls"
+    };
 
     function formatDate(ts) {
       if (!ts) return "–";
@@ -545,6 +681,76 @@
       attemptCharts = [];
     }
 
+    function renderAnalysis(questionStats, attemptTotal) {
+      analysisContent.innerHTML = "";
+
+      const totalAttempts = attemptTotal;
+      if (totalAttempts === 0) {
+        analysisContent.innerHTML =
+          '<p class="empty-message">No quiz data yet. Once there are attempts, this section will show the percentage of correct responses for each question.</p>';
+        analysisSummary.textContent =
+          "Per-question performance statistics will appear once there are quiz attempts.";
+        return;
+      }
+
+      analysisSummary.textContent =
+        `Based on ${totalAttempts} attempt${totalAttempts === 1 ? "" : "s"}.`;
+
+      const table = document.createElement("table");
+      table.className = "analysis-table";
+
+      const thead = document.createElement("thead");
+      thead.innerHTML = `
+        <tr>
+          <th>#</th>
+          <th>Question</th>
+          <th>Correct</th>
+          <th>Total responses</th>
+          <th>% correct</th>
+        </tr>
+      `;
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+
+      Object.keys(correctAnswers).forEach((qKey, index) => {
+        const stat = questionStats[qKey] || { correct: 0, total: 0 };
+        const total = stat.total || 0;
+        const correct = stat.correct || 0;
+        const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+        const tr = document.createElement("tr");
+        const badgeClass =
+          percent >= 80
+            ? "analysis-badge-high"
+            : percent <= 50 && total > 0
+            ? "analysis-badge-low"
+            : "";
+
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${questionLabels[qKey] || qKey}</td>
+          <td>${correct}</td>
+          <td>${total}</td>
+          <td>
+            ${percent}%
+            ${total > 0
+              ? `<span class="analysis-metric-pill ${badgeClass}">
+                  ${percent >= 80 ? "Well understood" :
+                    percent <= 50 ? "Needs review" :
+                    "Moderate"}
+                 </span>`
+              : ""
+            }
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      table.appendChild(tbody);
+      analysisContent.appendChild(table);
+    }
+
     // QUIZ RESULTS
     db.collection("quizResults")
       .orderBy("timestamp", "desc")
@@ -558,104 +764,125 @@
         if (docs.length === 0) {
           attemptsWrapper.appendChild(noAttemptsMsg);
           noAttemptsMsg.style.display = "block";
+          renderAnalysis({}, 0);
           return;
         } else {
           noAttemptsMsg.style.display = "none";
         }
 
         const maxToShow = 14;
-        docs.slice(0, maxToShow).forEach((doc, index) => {
+        const questionStats = {};
+        Object.keys(correctAnswers).forEach(q => {
+          questionStats[q] = { correct: 0, total: 0 };
+        });
+
+        docs.forEach((doc, index) => {
           const data = doc.data();
           const score = data.score ?? 0;
-          const totalQ = data.totalQuestions ?? 8;
-          const pct = data.percentage ?? 0;
-          const answered = data.answered ?? 0;
+          const totalQ = data.totalQuestions ?? 12;
+          const pct = data.percentage ?? (totalQ > 0 ? Math.round((score / totalQ) * 100) : 0);
+          const answered = data.answered ?? totalQ;
 
-          const card = document.createElement("div");
-          card.className = "attempt-card";
+          // Per-question stats (requires 'answers' object in quizResults docs)
+          if (data.answers && typeof data.answers === "object") {
+            Object.keys(correctAnswers).forEach((qKey) => {
+              const ans = data.answers[qKey];
+              if (ans) {
+                questionStats[qKey].total += 1;
+                if (ans === correctAnswers[qKey]) {
+                  questionStats[qKey].correct += 1;
+                }
+              }
+            });
+          }
 
-          // Left: text info
-          const left = document.createElement("div");
-          const header = document.createElement("div");
-          header.className = "attempt-header";
+          if (index < maxToShow) {
+            const card = document.createElement("div");
+            card.className = "attempt-card";
 
-          const nameDiv = document.createElement("div");
-          nameDiv.innerHTML = `
-            <div class="attempt-name">${data.name || "Unnamed"}</div>
-            <div class="attempt-meta">Attempt #${index + 1}</div>
-          `;
+            // Left: text info
+            const left = document.createElement("div");
+            const header = document.createElement("div");
+            header.className = "attempt-header";
 
-          const statusInfo = statusLabel(pct);
-          const statusSpan = document.createElement("span");
-          statusSpan.className = statusInfo.className;
-          statusSpan.textContent = statusInfo.text;
+            const nameDiv = document.createElement("div");
+            nameDiv.innerHTML = `
+              <div class="attempt-name">${data.name || "Unnamed"}</div>
+              <div class="attempt-meta">Attempt #${index + 1}</div>
+            `;
 
-          header.appendChild(nameDiv);
-          header.appendChild(statusSpan);
+            const statusInfo = statusLabel(pct);
+            const statusSpan = document.createElement("span");
+            statusSpan.className = statusInfo.className;
+            statusSpan.textContent = statusInfo.text;
 
-          const body = document.createElement("div");
-          body.innerHTML = `
-            <div class="score-line"><strong>Score:</strong> ${score}/${totalQ} (${pct}%)</div>
-            <div class="email-line"><strong>Email:</strong> ${data.email || "—"}</div>
-            <div class="time-line"><strong>Submitted:</strong> ${formatDate(data.timestamp)}</div>
-          `;
+            header.appendChild(nameDiv);
+            header.appendChild(statusSpan);
 
-          const stats = document.createElement("div");
-          stats.className = "attempt-stats";
-          stats.innerHTML = `
-            <span>Answered: ${answered}/${totalQ}</span>
-            <span>Correct: ${score}</span>
-            <span>Incorrect: ${Math.max(totalQ - score, 0)}</span>
-          `;
+            const body = document.createElement("div");
+            body.innerHTML = `
+              <div class="score-line"><strong>Score:</strong> ${score}/${totalQ} (${pct}%)</div>
+              <div class="email-line"><strong>Email:</strong> ${data.email || "—"}</div>
+              <div class="time-line"><strong>Submitted:</strong> ${formatDate(data.timestamp)}</div>
+            `;
 
-          left.appendChild(header);
-          left.appendChild(body);
-          left.appendChild(stats);
+            const stats = document.createElement("div");
+            stats.className = "attempt-stats";
+            stats.innerHTML = `
+              <span>Answered: ${answered}/${totalQ}</span>
+              <span>Correct: ${score}</span>
+              <span>Incorrect: ${Math.max(totalQ - score, 0)}</span>
+            `;
 
-          // Right: compact chart
-          const right = document.createElement("div");
-          right.className = "attempt-chart-wrapper";
-          const canvas = document.createElement("canvas");
-          canvas.id = `attempt-chart-${doc.id}`;
-          right.appendChild(canvas);
+            left.appendChild(header);
+            left.appendChild(body);
+            left.appendChild(stats);
 
-          card.appendChild(left);
-          card.appendChild(right);
-          attemptsWrapper.appendChild(card);
+            // Right: compact chart
+            const right = document.createElement("div");
+            right.className = "attempt-chart-wrapper";
+            const canvas = document.createElement("canvas");
+            canvas.id = `attempt-chart-${doc.id}`;
+            right.appendChild(canvas);
 
-          const ctx = canvas.getContext("2d");
-          const chart = new Chart(ctx, {
-            type: "doughnut",
-            data: {
-              labels: ["Correct", "Incorrect"],
-              datasets: [
-                {
-                  data: [score, Math.max(totalQ - score, 0)],
-                  backgroundColor: ["#16a34a", "#f97373"],
-                  borderColor: "#ffffff",
-                  borderWidth: 1.5,
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              cutout: "62%",
-              plugins: {
-                legend: { display: false },
-                tooltip: {
-                  callbacks: {
-                    label: function (ctx) {
-                      const label = ctx.label || "";
-                      const value = ctx.parsed || 0;
-                      return `${label}: ${value}`;
+            card.appendChild(left);
+            card.appendChild(right);
+            attemptsWrapper.appendChild(card);
+
+            const ctx = canvas.getContext("2d");
+            const chart = new Chart(ctx, {
+              type: "doughnut",
+              data: {
+                labels: ["Correct", "Incorrect"],
+                datasets: [
+                  {
+                    data: [score, Math.max(totalQ - score, 0)],
+                    backgroundColor: ["#16a34a", "#f97373"],
+                    borderColor: "#ffffff",
+                    borderWidth: 1.5,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: "62%",
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    callbacks: {
+                      label: function (ctx) {
+                        const label = ctx.label || "";
+                        const value = ctx.parsed || 0;
+                        return `${label}: ${value}`;
+                      },
                     },
                   },
                 },
               },
-            },
-          });
-          attemptCharts.push(chart);
+            });
+            attemptCharts.push(chart);
+          }
         });
 
         if (docs.length > maxToShow) {
@@ -665,6 +892,8 @@
           note.textContent = `Showing latest ${maxToShow} attempts.`;
           attemptsWrapper.appendChild(note);
         }
+
+        renderAnalysis(questionStats, docs.length);
       });
   </script>
 </body>

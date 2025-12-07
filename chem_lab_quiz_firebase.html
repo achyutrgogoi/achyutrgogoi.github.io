@@ -111,16 +111,6 @@
       color: #4b5563;
     }
 
-    .badge {
-      font-size: 0.75rem;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: var(--primary-soft);
-      color: var(--primary);
-      border: 1px solid rgba(39, 116, 174, 0.35);
-      white-space: nowrap;
-    }
-
     .brand-logos {
       display: flex;
       align-items: center;
@@ -133,12 +123,7 @@
     }
 
     .logo-ucla {
-      height: 34px;
-    }
-
-    .logo-lab {
-      height: 42px;
-      border-radius: 999px;
+      height: 38px;
     }
 
     @media (max-width: 640px) {
@@ -301,8 +286,6 @@
       }
     }
 
-    /* Quiz section */
-
     .welcome-banner {
       display: flex;
       justify-content: space-between;
@@ -369,53 +352,29 @@
       border: 1px solid var(--border);
     }
 
-    .question-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
-    }
-
-    .question-text {
+    .question p {
       font-size: 0.94rem;
       font-weight: 500;
       color: #111827;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
-    .question-tag {
-      font-size: 0.72rem;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #fff7db;
-      color: #92400e;
-      border: 1px solid #facc15;
-      white-space: nowrap;
-    }
-
-    .options {
-      margin-top: 6px;
-      display: grid;
-      gap: 4px;
-    }
-
-    .option-label {
-      display: flex;
-      gap: 7px;
+    .question label {
       font-size: 0.88rem;
+      font-weight: 400;
+      display: block;
       cursor: pointer;
-      padding: 4px 6px;
-      border-radius: 8px;
+      padding: 3px 4px;
+      border-radius: 6px;
       transition: background 0.12s ease;
-      color: #111827;
     }
 
-    .option-label:hover {
+    .question label:hover {
       background: #edf4ff;
     }
 
-    .option-label input {
-      margin-top: 2px;
+    .question input[type="radio"] {
+      margin-right: 6px;
     }
 
     .quiz-actions {
@@ -587,14 +546,14 @@
           GUTIERREZ LAB SAFETY QUIZ
         </h1>
         <p class="subtitle">
-          Pre-lab safety assessment for members of the Gutierrez Research Group.
+          Advanced laboratory safety assessment based on the UCLA Chemistry &amp; Biochemistry Laboratory Safety Manual.
         </p>
         <p class="subtitle-2">
           Department of Chemistry &amp; Biochemistry · University of California, Los Angeles
         </p>
       </div>
       <div class="brand-logos">
-        <!-- Update src paths to your actual filenames -->
+        <!-- Use your local logo file here -->
         <img src="ucla-logo.png" alt="UCLA Logo" class="logo-ucla" />
       </div>
     </header>
@@ -649,242 +608,136 @@
           </div>
         </div>
         <div class="pill">
-          Complete all questions · 1 point each · Results sync to dashboard
+          12 advanced questions · Auto-graded · Results sync to dashboard
         </div>
       </div>
 
       <div class="quiz-meta">
-        <span>⏱ 5–8 minutes</span>
-        <span>🧪 Gutierrez Lab Safety</span>
-        <span>📊 Auto-graded · Stored in Firestore</span>
+        <span>⏱ 8–12 minutes</span>
+        <span>🧪 Advanced UCLA Lab Safety</span>
+        <span>📊 Stored securely in Firestore</span>
       </div>
 
       <div class="divider"></div>
 
       <form id="quiz-form">
-        <!-- (questions unchanged from previous version) -->
-        <!-- Question 1 -->
+        <h2 style="color:#2774AE; margin-bottom: 15px; font-size:1.05rem;">
+          Advanced UCLA Laboratory Safety Quiz
+        </h2>
+
+        <!-- Q1 -->
         <div class="question">
-          <div class="question-header">
-            <div class="question-text">
-              1. Which of the following is the most appropriate footwear in a chemistry lab?
-            </div>
-            <div class="question-tag">PPE</div>
-          </div>
-          <div class="options">
-            <label class="option-label">
-              <input type="radio" name="q1" value="A" />
-              Open-toed sandals, as long as you are careful
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q1" value="B" />
-              Closed-toe shoes that fully cover the foot
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q1" value="C" />
-              Flip-flops with socks
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q1" value="D" />
-              High-heels with open toes
-            </label>
-          </div>
+          <p><strong>1. When handling pyrophoric reagents (such as t-BuLi), what does the UCLA safety manual require?</strong></p>
+          <label><input type="radio" name="q1" value="A"> Only gloves and goggles</label>
+          <label><input type="radio" name="q1" value="B"> Work in a fume hood AND have an SOP AND receive specialized training</label>
+          <label><input type="radio" name="q1" value="C"> Work in open air</label>
+          <label><input type="radio" name="q1" value="D"> No special requirements</label>
         </div>
-        <!-- Question 2 -->
+
+        <!-- Q2 -->
         <div class="question">
-          <div class="question-header">
-            <div class="question-text">
-              2. When should you wear safety goggles in the lab?
-            </div>
-            <div class="question-tag">PPE</div>
-          </div>
-          <div class="options">
-            <label class="option-label">
-              <input type="radio" name="q2" value="A" />
-              Only when you are personally handling corrosive chemicals
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q2" value="B" />
-              Only when the instructor reminds you
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q2" value="C" />
-              At all times when anyone is working with chemicals or glassware
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q2" value="D" />
-              Goggles are optional if you wear prescription glasses
-            </label>
-          </div>
+          <p><strong>2. How should empty chemical containers be handled?</strong></p>
+          <label><input type="radio" name="q2" value="A"> Throw directly into the trash</label>
+          <label><input type="radio" name="q2" value="B"> Treat as hazardous waste unless triple-rinsed and labels defaced</label>
+          <label><input type="radio" name="q2" value="C"> Leave them on the benchtop</label>
+          <label><input type="radio" name="q2" value="D"> Break them and dispose as glass</label>
         </div>
-        <!-- Question 3 -->
+
+        <!-- Q3 -->
         <div class="question">
-          <div class="question-header">
-            <div class="question-text">
-              3. What is the best first response if a chemical spill occurs on your skin?
-            </div>
-            <div class="question-tag">Spills</div>
-          </div>
-          <div class="options">
-            <label class="option-label">
-              <input type="radio" name="q3" value="A" />
-              Immediately wipe it off with paper towels
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q3" value="B" />
-              Rinse the affected area with plenty of water and notify the instructor
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q3" value="C" />
-              Ignore it if there is no visible irritation
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q3" value="D" />
-              Cover the area with your lab coat
-            </label>
-          </div>
+          <p><strong>3. What document must be accessible for every chemical in the lab?</strong></p>
+          <label><input type="radio" name="q3" value="A"> Shipping invoice</label>
+          <label><input type="radio" name="q3" value="B"> Printed MSDS binder only</label>
+          <label><input type="radio" name="q3" value="C"> Safety Data Sheets (SDS), printed or digital</label>
+          <label><input type="radio" name="q3" value="D"> The PI’s handwritten notes</label>
         </div>
-        <!-- Question 4 -->
+
+        <!-- Q4 -->
         <div class="question">
-          <div class="question-header">
-            <div class="question-text">
-              4. How should you smell a chemical, if instructed to do so?
-            </div>
-            <div class="question-tag">Technique</div>
-          </div>
-          <div class="options">
-            <label class="option-label">
-              <input type="radio" name="q4" value="A" />
-              Place your nose directly over the container and inhale deeply
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q4" value="B" />
-              Wave your hand gently above the opening to waft vapors toward your nose
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q4" value="C" />
-              Shake the container vigorously and then open it
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q4" value="D" />
-              Smell the chemical only after heating it
-            </label>
-          </div>
+          <p><strong>4. Which gloves are appropriate for handling halogenated solvents (e.g., dichloromethane)?</strong></p>
+          <label><input type="radio" name="q4" value="A"> Latex gloves</label>
+          <label><input type="radio" name="q4" value="B"> Nitrile — but only for splash protection</label>
+          <label><input type="radio" name="q4" value="C"> Leather gloves</label>
+          <label><input type="radio" name="q4" value="D"> Any glove works equally well</label>
         </div>
-        <!-- Question 5 -->
+
+        <!-- Q5 -->
         <div class="question">
-          <div class="question-header">
-            <div class="question-text">
-              5. Which waste should be placed in a designated organic waste container?
-            </div>
-            <div class="question-tag">Waste</div>
-          </div>
-          <div class="options">
-            <label class="option-label">
-              <input type="radio" name="q5" value="A" />
-              Broken glass
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q5" value="B" />
-              Paper towels used to clean the bench
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q5" value="C" />
-              A mixture of acetone and ethanol from a reaction workup
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q5" value="D" />
-              Tap water used to rinse glassware
-            </label>
-          </div>
+          <p><strong>5. What is the required FIRST action during a large chemical spill?</strong></p>
+          <label><input type="radio" name="q5" value="A"> Immediately attempt cleanup</label>
+          <label><input type="radio" name="q5" value="B"> Evacuate the area and activate emergency response procedures</label>
+          <label><input type="radio" name="q5" value="C"> Dilute with water</label>
+          <label><input type="radio" name="q5" value="D"> Move flammables closer to the spill</label>
         </div>
-        <!-- Question 6 -->
+
+        <!-- Q6 -->
         <div class="question">
-          <div class="question-header">
-            <div class="question-text">
-              6. What is the correct action if you break a piece of glassware?
-            </div>
-            <div class="question-tag">Glassware</div>
-          </div>
-          <div class="options">
-            <label class="option-label">
-              <input type="radio" name="q6" value="A" />
-              Pick up the pieces with your hands and throw them in the regular trash
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q6" value="B" />
-              Leave it on the floor and move away
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q6" value="C" />
-              Notify the instructor and use a brush and dustpan to dispose in a designated glass container
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q6" value="D" />
-              Kick it under the bench so nobody steps on it
-            </label>
-          </div>
+          <p><strong>6. Which chemicals require a designated restricted-access area?</strong></p>
+          <label><input type="radio" name="q6" value="A"> Common organic solvents</label>
+          <label><input type="radio" name="q6" value="B"> Particularly Hazardous Substances (PHS)</label>
+          <label><input type="radio" name="q6" value="C"> All flammables</label>
+          <label><input type="radio" name="q6" value="D"> Glassware cleaning acids</label>
         </div>
-        <!-- Question 7 -->
+
+        <!-- Q7 -->
         <div class="question">
-          <div class="question-header">
-            <div class="question-text">
-              7. Eating or drinking in the lab is:
-            </div>
-            <div class="question-tag">Conduct</div>
-          </div>
-          <div class="options">
-            <label class="option-label">
-              <input type="radio" name="q7" value="A" />
-              Allowed if your experiment is finished
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q7" value="B" />
-              Allowed only in a fume hood
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q7" value="C" />
-              Strictly prohibited at all times
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q7" value="D" />
-              Allowed if you wear gloves
-            </label>
-          </div>
+          <p><strong>7. When transporting cryogenic liquids, what is required?</strong></p>
+          <label><input type="radio" name="q7" value="A"> Insulated gloves AND eye/face protection</label>
+          <label><input type="radio" name="q7" value="B"> Carry open containers</label>
+          <label><input type="radio" name="q7" value="C"> No PPE is necessary</label>
+          <label><input type="radio" name="q7" value="D"> Use elevators freely without precautions</label>
         </div>
-        <!-- Question 8 -->
+
+        <!-- Q8 -->
         <div class="question">
-          <div class="question-header">
-            <div class="question-text">
-              8. Before starting any experiment, you should first:
-            </div>
-            <div class="question-tag">Preparation</div>
-          </div>
-          <div class="options">
-            <label class="option-label">
-              <input type="radio" name="q8" value="A" />
-              Begin mixing chemicals and adjust as you go
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q8" value="B" />
-              Read the lab procedure and relevant safety information (SDS, hazards)
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q8" value="C" />
-              Ask a friend what they are doing and copy them
-            </label>
-            <label class="option-label">
-              <input type="radio" name="q8" value="D" />
-              Turn on every piece of equipment you see
-            </label>
-          </div>
+          <p><strong>8. What must be done if a lab member becomes pregnant and works with reproductive toxins?</strong></p>
+          <label><input type="radio" name="q8" value="A"> Remove them from all lab work immediately</label>
+          <label><input type="radio" name="q8" value="B"> Conduct a reproductive hazard consultation and risk assessment</label>
+          <label><input type="radio" name="q8" value="C"> Only require double gloves</label>
+          <label><input type="radio" name="q8" value="D"> No action is required</label>
+        </div>
+
+        <!-- Q9 -->
+        <div class="question">
+          <p><strong>9. What is the maximum period that chemical waste may remain in the laboratory?</strong></p>
+          <label><input type="radio" name="q9" value="A"> 30 days</label>
+          <label><input type="radio" name="q9" value="B"> 90 days</label>
+          <label><input type="radio" name="q9" value="C"> 365 days</label>
+          <label><input type="radio" name="q9" value="D"> There is no limit</label>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question">
+          <p><strong>10. Chemical waste containers must be labeled when?</strong></p>
+          <label><input type="radio" name="q10" value="A"> Only when full</label>
+          <label><input type="radio" name="q10" value="B"> BEFORE any waste is added</label>
+          <label><input type="radio" name="q10" value="C"> Only when EH&amp;S collects them</label>
+          <label><input type="radio" name="q10" value="D"> Only flammables require labels</label>
+        </div>
+
+        <!-- Q11 -->
+        <div class="question">
+          <p><strong>11. A peroxide-forming chemical has crystals around the cap. What must you do?</strong></p>
+          <label><input type="radio" name="q11" value="A"> Open very carefully</label>
+          <label><input type="radio" name="q11" value="B"> Dilute with water</label>
+          <label><input type="radio" name="q11" value="C"> DO NOT OPEN — Contact EH&amp;S immediately</label>
+          <label><input type="radio" name="q11" value="D"> Freeze it</label>
+        </div>
+
+        <!-- Q12 -->
+        <div class="question">
+          <p><strong>12. Work with volatile toxic chemicals must occur under which engineering control?</strong></p>
+          <label><input type="radio" name="q12" value="A"> Biosafety cabinet</label>
+          <label><input type="radio" name="q12" value="B"> Chemical fume hood</label>
+          <label><input type="radio" name="q12" value="C"> Glovebox only</label>
+          <label><input type="radio" name="q12" value="D"> No engineering control is necessary</label>
         </div>
 
         <div class="quiz-actions">
           <div class="score-box" id="score-box">
             Score: <strong id="score-text">Not submitted</strong>
             <div class="score-detail" id="score-detail">
-              Answer all questions and click “Submit Answers”.
+              Answer all 12 questions and click “Submit Answers”.
             </div>
           </div>
 
@@ -995,15 +848,20 @@
 
     let scoreChart = null;
 
+    // Correct answers for q1–q12
     const correctAnswers = {
-      q1: "B",
-      q2: "C",
-      q3: "B",
-      q4: "B",
-      q5: "C",
-      q6: "C",
-      q7: "C",
-      q8: "B",
+      q1: "B",  // pyrophoric reagents
+      q2: "B",  // empty containers
+      q3: "C",  // SDS
+      q4: "B",  // halogenated solvents gloves
+      q5: "B",  // large chemical spill
+      q6: "B",  // restricted-access area
+      q7: "A",  // cryogenic transport
+      q8: "B",  // pregnancy & reproductive toxins
+      q9: "B",  // 90 days
+      q10: "B", // waste labeling
+      q11: "C", // peroxide-forming crystals
+      q12: "B"  // volatile toxic chemicals
     };
     const totalQuestions = Object.keys(correctAnswers).length;
 
@@ -1058,28 +916,30 @@
 
       scoreText.textContent = "Not submitted";
       scoreDetail.textContent =
-        "Answer all questions and click “Submit Answers”.";
+        "Answer all 12 questions and click “Submit Answers”.";
 
       recordActiveUser(name, email);
 
       switchSection(quizSection);
     });
 
-    async function saveResultToFirestore({ name, email, score, percentage, answered }) {
-      try {
-        await db.collection("quizResults").add({
-          name,
-          email,
-          score,
-          percentage,
-          answered,
-          totalQuestions,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        });
-      } catch (err) {
-        console.error("Error saving result:", err);
-      }
-    }
+    async function saveResultToFirestore({ name, email, score, percentage, answered, answers }) {
+  try {
+    await db.collection("quizResults").add({
+      name,
+      email,
+      score,
+      percentage,
+      answered,
+      totalQuestions,
+      answers,  // <-- new field
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+  } catch (err) {
+    console.error("Error saving result:", err);
+  }
+}
+
 
     function renderScoreChart(score, total) {
       const correct = score;
@@ -1129,59 +989,52 @@
       let comment;
       if (percentage >= 80) {
         comment =
-          "Excellent. You have a strong understanding of the basic laboratory safety expectations.";
+          "Excellent. You have a strong understanding of advanced laboratory safety expectations.";
       } else if (percentage >= 60) {
         comment =
-          "Good start. Please review the missed questions and safety notes carefully.";
+          "Good start. Please review the missed questions and relevant sections of the UCLA safety manual.";
       } else {
         comment =
-          "Please review the laboratory safety rules in detail and retake the quiz.";
+          "Please review the laboratory safety rules in detail and retake the quiz before performing independent lab work.";
       }
       resultComment.textContent = comment;
 
       renderScoreChart(score, totalQuestions);
     }
 
-    quizForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+   quizForm.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-      let score = 0;
-      let answered = 0;
+  let score = 0;
+  let answered = 0;
+  const answers = {}; // <-- collect per-question answers
 
-      for (const q in correctAnswers) {
-        const selected = quizForm.querySelector(
-          `input[name="${q}"]:checked`
-        );
-        if (selected) {
-          answered++;
-          if (selected.value === correctAnswers[q]) {
-            score++;
-          }
-        }
+  for (const q in correctAnswers) {
+    const selected = quizForm.querySelector(
+      `input[name="${q}"]:checked`
+    );
+    if (selected) {
+      answered++;
+      answers[q] = selected.value;  // <-- store chosen option
+      if (selected.value === correctAnswers[q]) {
+        score++;
       }
+    }
+  }
 
-      const percentage = Math.round((score / totalQuestions) * 100);
+  const percentage = Math.round((score / totalQuestions) * 100);
 
-      scoreText.textContent = `${score} / ${totalQuestions} (${percentage}%)`;
+  // ... existing scoreText / scoreDetail stuff ...
 
-      if (answered < totalQuestions) {
-        scoreDetail.textContent =
-          `You answered ${answered} out of ${totalQuestions} questions. ` +
-          `Unanswered questions are counted as incorrect.`;
-      } else {
-        scoreDetail.textContent =
-          "Great job finishing the quiz. Review your score in the results section below.";
-      }
+  const name = studentNameSpan.textContent || nameInput.value.trim();
+  const email = studentEmailSpan.textContent || emailInput.value.trim();
+  if (name && email) {
+    saveResultToFirestore({ name, email, score, percentage, answered, answers });
+  }
 
-      const name = studentNameSpan.textContent || nameInput.value.trim();
-      const email = studentEmailSpan.textContent || emailInput.value.trim();
-      if (name && email) {
-        saveResultToFirestore({ name, email, score, percentage, answered });
-      }
-
-      buildResultView({ name, email, score, percentage, answered });
-      switchSection(resultSection);
-    });
+  buildResultView({ name, email, score, percentage, answered });
+  switchSection(resultSection);
+});
 
     resetQuizBtn.addEventListener("click", function () {
       const checkedInputs = quizForm.querySelectorAll(
@@ -1191,7 +1044,7 @@
 
       scoreText.textContent = "Not submitted";
       scoreDetail.textContent =
-        "Answer all questions and click “Submit Answers”.";
+        "Answer all 12 questions and click “Submit Answers”.";
     });
 
     btnRetake.addEventListener("click", () => {
@@ -1202,7 +1055,7 @@
 
       scoreText.textContent = "Not submitted";
       scoreDetail.textContent =
-        "Answer all questions and click “Submit Answers”.";
+        "Answer all 12 questions and click “Submit Answers”.";
       switchSection(quizSection);
     });
 
@@ -1216,7 +1069,7 @@
 
       scoreText.textContent = "Not submitted";
       scoreDetail.textContent =
-        "Answer all questions and click “Submit Answers”.";
+        "Answer all 12 questions and click “Submit Answers”.";
       switchSection(loginSection);
     });
   </script>
