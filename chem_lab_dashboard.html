@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GUTIERREZ LAB SAFETY QUIZ – DASHBOARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --accent: #2774AE;        /* UCLA Blue */
+      --accent-soft: rgba(39, 116, 174, 0.08);
+      --accent-gold: #FFD100;   /* UCLA Gold */
+      --success: #16a34a;
+      --danger: #b91c1c;
+      --radius-lg: 18px;
+      --radius-md: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      margin: 0;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px 14px 22px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+      border: 1px solid var(--border);
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 24px 20px 26px;
+        border-radius: 24px;
+      }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    h1 {
+      font-size: 1.35rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #102a43;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .mark-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--accent-gold), var(--accent));
+    }
+
+    .subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .subtitle-2 {
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(39, 116, 174, 0.25);
+      font-size: 0.8rem;
+      color: #1f4f7f;
+      white-space: nowrap;
+    }
+
+    .brand-logos {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-logos img {
+      display: block;
+      object-fit: contain;
+    }
+
+    .logo-ucla {
+      height: 34px;
+    }
+
+    .logo-lab {
+      height: 42px;
+      border-radius: 999px;
+    }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.45fr);
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 12px 14px 14px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #102a43;
+    }
+
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .tag-pill {
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      white-space: nowrap;
+      background: #f9fafb;
+    }
+
+    /* Left column */
+
+    .question-list {
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+
+    .question-item {
+      padding: 6px 8px;
+      border-radius: 10px;
+      background: #f9fafb;
+      border: 1px solid var(--border);
+    }
+
+    .question-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .question-text {
+      font-size: 0.86rem;
+      color: var(--text-main);
+    }
+
+    .active-users-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 0.8rem;
+    }
+
+    .active-user-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+
+    .empty-message {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Right column – attempts */
+
+    .attempts-wrapper {
+      max-height: 540px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .attempt-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(110px, 0.9fr);
+      gap: 8px;
+      padding: 8px 9px;
+      margin-bottom: 8px;
+      border-radius: 14px;
+      background: #f9fafb;
+      border: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .attempt-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .attempt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .attempt-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .attempt-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .status-pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .status-pass {
+      background: #ecfdf5;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .status-fail {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .score-line {
+      font-size: 0.85rem;
+      margin-bottom: 2px;
+    }
+
+    .email-line {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+      word-break: break-all;
+    }
+
+    .time-line {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .attempt-stats {
+      font-size: 0.78rem;
+      margin-top: 4px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .attempt-stats span {
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background: #ffffff;
+    }
+
+    .attempt-chart-wrapper {
+      max-width: 120px;
+      height: 120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border-radius: 999px;
+    }
+
+    .attempt-chart-wrapper canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-text">
+        <h1><span class="mark-dot"></span>GUTIERREZ LAB SAFETY QUIZ</h1>
+        <p class="subtitle">
+          Live overview of quiz participation and performance for Gutierrez Lab members.
+        </p>
+        <p class="subtitle-2">
+          Department of Chemistry &amp; Biochemistry · University of California, Los Angeles
+        </p>
+      </div>
+      <div class="brand-logos">
+        <!-- Update src paths to your actual filenames -->
+        <img src="ucla-logo.png" alt="UCLA Logo" class="logo-ucla" />
+      </div>
+    </header>
+
+    <div class="main-layout">
+      <!-- LEFT COLUMN -->
+      <div class="left-col">
+        <!-- Questions card -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Quiz questions</div>
+              <div class="card-subtitle">Reference for the Gutierrez Lab safety quiz</div>
+            </div>
+          </div>
+
+          <div class="question-list">
+            <div class="question-item">
+              <div class="question-label">Q1 · PPE</div>
+              <div class="question-text">
+                Which of the following is the most appropriate footwear in a chemistry lab?
+              </div>
+            </div>
+            <div class="question-item">
+              <div class="question-label">Q2 · PPE</div>
+              <div class="question-text">
+                When should you wear safety goggles in the lab?
+              </div>
+            </div>
+            <div class="question-item">
+              <div class="question-label">Q3 · Spills</div>
+              <div class="question-text">
+                What is the best first response if a chemical spill occurs on your skin?
+              </div>
+            </div>
+            <div class="question-item">
+              <div class="question-label">Q4 · Technique</div>
+              <div class="question-text">
+                How should you smell a chemical, if instructed to do so?
+              </div>
+            </div>
+            <div class="question-item">
+              <div class="question-label">Q5 · Waste</div>
+              <div class="question-text">
+                Which waste should be placed in a designated organic waste container?
+              </div>
+            </div>
+            <div class="question-item">
+              <div class="question-label">Q6 · Glassware</div>
+              <div class="question-text">
+                What is the correct action if you break a piece of glassware?
+              </div>
+            </div>
+            <div class="question-item">
+              <div class="question-label">Q7 · Conduct</div>
+              <div class="question-text">
+                Eating or drinking in the lab is:
+              </div>
+            </div>
+            <div class="question-item">
+              <div class="question-label">Q8 · Preparation</div>
+              <div class="question-text">
+                Before starting any experiment, you should first:
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active users card -->
+        <div class="card" style="margin-top: 10px;">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Active users</div>
+              <div class="card-subtitle">Most recent logins</div>
+            </div>
+            <span class="tag-pill" id="active-count">0 active</span>
+          </div>
+          <div id="active-users" class="active-users-list">
+            <span class="empty-message">No active users yet.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="right-col">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Quiz attempts</div>
+              <div class="card-subtitle">
+                Latest submissions with PASS (≥ 70%) / FAIL and compact score charts.
+              </div>
+            </div>
+            <span class="tag-pill" id="attempt-count">0 attempts</span>
+          </div>
+
+          <div id="attempts-wrapper" class="attempts-wrapper">
+            <p class="empty-message" id="no-attempts-msg">
+              No attempts recorded yet. As soon as someone submits the quiz, their attempt will appear here.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCZFFw3CUuPzZGwNPObZ4WIq31wm4QCRSE",
+      authDomain: "safety-quiz-de8ee.firebaseapp.com",
+      projectId: "safety-quiz-de8ee",
+      storageBucket: "safety-quiz-de8ee.firebasestorage.app",
+      messagingSenderId: "640365300888",
+      appId: "1:640365300888:web:34f8147396c1af4920d4ed",
+      measurementId: "G-85KEB6SLYK"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const activeUsersContainer = document.getElementById("active-users");
+    const activeCount = document.getElementById("active-count");
+
+    const attemptsWrapper = document.getElementById("attempts-wrapper");
+    const attemptsCount = document.getElementById("attempt-count");
+    const noAttemptsMsg = document.getElementById("no-attempts-msg");
+
+    const PASS_THRESHOLD = 70;
+    let attemptCharts = [];
+
+    function formatDate(ts) {
+      if (!ts) return "–";
+      const d = ts.toDate();
+      return d.toLocaleString();
+    }
+
+    // ACTIVE USERS
+    db.collection("activeUsers")
+      .orderBy("lastLogin", "desc")
+      .onSnapshot((snapshot) => {
+        activeUsersContainer.innerHTML = "";
+        let count = 0;
+
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          count++;
+          const span = document.createElement("span");
+          span.className = "active-user-pill";
+          span.textContent = data.name || data.email || "Unknown user";
+          activeUsersContainer.appendChild(span);
+        });
+
+        if (count === 0) {
+          activeUsersContainer.innerHTML =
+            '<span class="empty-message">No active users yet.</span>';
+        }
+
+        activeCount.textContent = `${count} active`;
+      });
+
+    function statusLabel(percentage) {
+      if (percentage >= PASS_THRESHOLD) {
+        return {
+          text: "PASS",
+          className: "status-pill status-pass",
+        };
+      }
+      return {
+        text: "FAIL",
+        className: "status-pill status-fail",
+      };
+    }
+
+    function destroyAttemptCharts() {
+      attemptCharts.forEach((ch) => ch.destroy());
+      attemptCharts = [];
+    }
+
+    // QUIZ RESULTS
+    db.collection("quizResults")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        destroyAttemptCharts();
+        attemptsWrapper.innerHTML = "";
+        const docs = snapshot.docs;
+
+        attemptsCount.textContent = `${docs.length} attempts`;
+
+        if (docs.length === 0) {
+          attemptsWrapper.appendChild(noAttemptsMsg);
+          noAttemptsMsg.style.display = "block";
+          return;
+        } else {
+          noAttemptsMsg.style.display = "none";
+        }
+
+        const maxToShow = 14;
+        docs.slice(0, maxToShow).forEach((doc, index) => {
+          const data = doc.data();
+          const score = data.score ?? 0;
+          const totalQ = data.totalQuestions ?? 8;
+          const pct = data.percentage ?? 0;
+          const answered = data.answered ?? 0;
+
+          const card = document.createElement("div");
+          card.className = "attempt-card";
+
+          // Left: text info
+          const left = document.createElement("div");
+          const header = document.createElement("div");
+          header.className = "attempt-header";
+
+          const nameDiv = document.createElement("div");
+          nameDiv.innerHTML = `
+            <div class="attempt-name">${data.name || "Unnamed"}</div>
+            <div class="attempt-meta">Attempt #${index + 1}</div>
+          `;
+
+          const statusInfo = statusLabel(pct);
+          const statusSpan = document.createElement("span");
+          statusSpan.className = statusInfo.className;
+          statusSpan.textContent = statusInfo.text;
+
+          header.appendChild(nameDiv);
+          header.appendChild(statusSpan);
+
+          const body = document.createElement("div");
+          body.innerHTML = `
+            <div class="score-line"><strong>Score:</strong> ${score}/${totalQ} (${pct}%)</div>
+            <div class="email-line"><strong>Email:</strong> ${data.email || "—"}</div>
+            <div class="time-line"><strong>Submitted:</strong> ${formatDate(data.timestamp)}</div>
+          `;
+
+          const stats = document.createElement("div");
+          stats.className = "attempt-stats";
+          stats.innerHTML = `
+            <span>Answered: ${answered}/${totalQ}</span>
+            <span>Correct: ${score}</span>
+            <span>Incorrect: ${Math.max(totalQ - score, 0)}</span>
+          `;
+
+          left.appendChild(header);
+          left.appendChild(body);
+          left.appendChild(stats);
+
+          // Right: compact chart
+          const right = document.createElement("div");
+          right.className = "attempt-chart-wrapper";
+          const canvas = document.createElement("canvas");
+          canvas.id = `attempt-chart-${doc.id}`;
+          right.appendChild(canvas);
+
+          card.appendChild(left);
+          card.appendChild(right);
+          attemptsWrapper.appendChild(card);
+
+          const ctx = canvas.getContext("2d");
+          const chart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+              labels: ["Correct", "Incorrect"],
+              datasets: [
+                {
+                  data: [score, Math.max(totalQ - score, 0)],
+                  backgroundColor: ["#16a34a", "#f97373"],
+                  borderColor: "#ffffff",
+                  borderWidth: 1.5,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              cutout: "62%",
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  callbacks: {
+                    label: function (ctx) {
+                      const label = ctx.label || "";
+                      const value = ctx.parsed || 0;
+                      return `${label}: ${value}`;
+                    },
+                  },
+                },
+              },
+            },
+          });
+          attemptCharts.push(chart);
+        });
+
+        if (docs.length > maxToShow) {
+          const note = document.createElement("p");
+          note.className = "empty-message";
+          note.style.marginTop = "4px";
+          note.textContent = `Showing latest ${maxToShow} attempts.`;
+          attemptsWrapper.appendChild(note);
+        }
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GUTIERREZ LAB SAFETY QUIZ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+      --primary: #2774AE;        /* UCLA Blue */
+      --primary-soft: rgba(39, 116, 174, 0.08);
+      --accent: #FFD100;         /* UCLA Gold */
+      --danger: #b91c1c;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --radius-lg: 18px;
+      --radius-md: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 16px;
+      color: var(--text-main);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 980px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+      padding: 20px 16px 22px;
+      border: 1px solid var(--border);
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 28px 28px 30px;
+        border-radius: 24px;
+      }
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #102a43;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+
+    h1 span.logo-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--accent), var(--primary));
+    }
+
+    .subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .subtitle-2 {
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid rgba(39, 116, 174, 0.35);
+      white-space: nowrap;
+    }
+
+    .brand-logos {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-logos img {
+      display: block;
+      object-fit: contain;
+    }
+
+    .logo-ucla {
+      height: 34px;
+    }
+
+    .logo-lab {
+      height: 42px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 640px) {
+      .brand-logos {
+        align-self: flex-start;
+      }
+    }
+
+    section {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      margin-top: 10px;
+    }
+
+    #login-section,
+    #quiz-section,
+    #result-section {
+      display: none;
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    #login-section.active,
+    #quiz-section.active,
+    #result-section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #102a43;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    @media (min-width: 600px) {
+      .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #111827;
+    }
+
+    .required {
+      color: var(--danger);
+      margin-left: 2px;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      padding: 9px 11px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+      background: #f9fafb;
+      color: var(--text-main);
+    }
+
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder {
+      color: #9ca3af;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(39, 116, 174, 0.2);
+      background: #ffffff;
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .error-msg {
+      font-size: 0.8rem;
+      color: var(--danger);
+      margin-top: 2px;
+      display: none;
+    }
+
+    .btn-row {
+      margin-top: 18px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.08s ease, box-shadow 0.12s ease,
+        background 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #2c86cc);
+      color: #ffffff;
+      box-shadow: 0 10px 22px rgba(39, 116, 174, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(39, 116, 174, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 16px rgba(39, 116, 174, 0.2);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--text-main);
+      border-radius: 999px;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: #f3f4f6;
+    }
+
+    @media (max-width: 640px) {
+      .btn-row {
+        justify-content: stretch;
+      }
+      .btn-row .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* Quiz section */
+
+    .welcome-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #e3f2ff;
+      border: 1px solid #c8e0fa;
+      font-size: 0.86rem;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .welcome-banner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .welcome-banner strong {
+      color: #102a43;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px dashed #c4ddff;
+      font-size: 0.78rem;
+      color: #1f4f7f;
+      background: #edf4ff;
+      white-space: nowrap;
+    }
+
+    .quiz-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .quiz-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #f9fafb;
+      border: 1px solid var(--border);
+    }
+
+    .divider {
+      border-top: 1px solid var(--border);
+      margin: 10px 0 6px;
+    }
+
+    .question {
+      margin-top: 12px;
+      padding: 10px 10px;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .question-text {
+      font-size: 0.94rem;
+      font-weight: 500;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    .question-tag {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #fff7db;
+      color: #92400e;
+      border: 1px solid #facc15;
+      white-space: nowrap;
+    }
+
+    .options {
+      margin-top: 6px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .option-label {
+      display: flex;
+      gap: 7px;
+      font-size: 0.88rem;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 8px;
+      transition: background 0.12s ease;
+      color: #111827;
+    }
+
+    .option-label:hover {
+      background: #edf4ff;
+    }
+
+    .option-label input {
+      margin-top: 2px;
+    }
+
+    .quiz-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+      .quiz-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+      }
+      .quiz-actions > div:last-child {
+        display: flex;
+        gap: 8px;
+      }
+      .quiz-actions button {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
+    .score-box {
+      font-size: 0.86rem;
+      padding: 8px 10px;
+      background: #f9fafb;
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--border);
+      min-width: 200px;
+    }
+
+    .score-box strong {
+      color: var(--primary);
+    }
+
+    .score-detail {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Result section */
+
+    #result-section {
+      margin-top: 12px;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .result-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .result-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #102a43;
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .result-chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      white-space: nowrap;
+    }
+
+    .result-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .result-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .result-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 12px 14px 15px;
+    }
+
+    .result-metric-main {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 3px;
+      color: #111827;
+    }
+
+    .result-comment {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .result-grid-mini {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .mini-pill {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .result-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+      .result-actions {
+        flex-direction: column;
+      }
+      .result-actions .btn,
+      .result-actions .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title-block">
+        <h1>
+          <span class="logo-dot"></span>
+          GUTIERREZ LAB SAFETY QUIZ
+        </h1>
+        <p class="subtitle">
+          Pre-lab safety assessment for members of the Gutierrez Research Group.
+        </p>
+        <p class="subtitle-2">
+          Department of Chemistry &amp; Biochemistry · University of California, Los Angeles
+        </p>
+      </div>
+      <div class="brand-logos">
+        <!-- Update src paths to your actual filenames -->
+        <img src="ucla-logo.png" alt="UCLA Logo" class="logo-ucla" />
+      </div>
+    </header>
+
+    <!-- LOGIN SECTION -->
+    <section id="login-section" class="active" aria-label="Login">
+      <div class="section-title">Login</div>
+      <p class="subtitle" style="margin-bottom: 10px;">
+        Please enter your name and UCLA email to begin the quiz.
+      </p>
+
+      <form id="login-form" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">
+              Full Name <span class="required">*</span>
+            </label>
+            <input type="text" id="name" name="name" placeholder="e.g., Jane Doe" required />
+            <div id="name-error" class="error-msg">Please enter your name.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">
+              Email ID <span class="required">*</span>
+            </label>
+            <input type="email" id="email" name="email" placeholder="e.g., janedoe@ucla.edu" required />
+            <div class="hint">Use your UCLA or institutional email address.</div>
+            <div id="email-error" class="error-msg">
+              Please enter a valid email address.
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button type="submit" class="btn btn-primary">
+            Start Quiz
+            <span aria-hidden="true">▶</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- QUIZ SECTION -->
+    <section id="quiz-section" aria-label="Quiz">
+      <div class="welcome-banner">
+        <div>
+          <div style="font-weight: 500; margin-bottom: 2px;">
+            Welcome, <strong id="student-name"></strong>!
+          </div>
+          <div style="font-size: 0.8rem;">
+            Logged in as <span id="student-email" style="font-weight: 500;"></span>
+          </div>
+        </div>
+        <div class="pill">
+          Complete all questions · 1 point each · Results sync to dashboard
+        </div>
+      </div>
+
+      <div class="quiz-meta">
+        <span>⏱ 5–8 minutes</span>
+        <span>🧪 Gutierrez Lab Safety</span>
+        <span>📊 Auto-graded · Stored in Firestore</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <form id="quiz-form">
+        <!-- (questions unchanged from previous version) -->
+        <!-- Question 1 -->
+        <div class="question">
+          <div class="question-header">
+            <div class="question-text">
+              1. Which of the following is the most appropriate footwear in a chemistry lab?
+            </div>
+            <div class="question-tag">PPE</div>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q1" value="A" />
+              Open-toed sandals, as long as you are careful
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q1" value="B" />
+              Closed-toe shoes that fully cover the foot
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q1" value="C" />
+              Flip-flops with socks
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q1" value="D" />
+              High-heels with open toes
+            </label>
+          </div>
+        </div>
+        <!-- Question 2 -->
+        <div class="question">
+          <div class="question-header">
+            <div class="question-text">
+              2. When should you wear safety goggles in the lab?
+            </div>
+            <div class="question-tag">PPE</div>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q2" value="A" />
+              Only when you are personally handling corrosive chemicals
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q2" value="B" />
+              Only when the instructor reminds you
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q2" value="C" />
+              At all times when anyone is working with chemicals or glassware
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q2" value="D" />
+              Goggles are optional if you wear prescription glasses
+            </label>
+          </div>
+        </div>
+        <!-- Question 3 -->
+        <div class="question">
+          <div class="question-header">
+            <div class="question-text">
+              3. What is the best first response if a chemical spill occurs on your skin?
+            </div>
+            <div class="question-tag">Spills</div>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q3" value="A" />
+              Immediately wipe it off with paper towels
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q3" value="B" />
+              Rinse the affected area with plenty of water and notify the instructor
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q3" value="C" />
+              Ignore it if there is no visible irritation
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q3" value="D" />
+              Cover the area with your lab coat
+            </label>
+          </div>
+        </div>
+        <!-- Question 4 -->
+        <div class="question">
+          <div class="question-header">
+            <div class="question-text">
+              4. How should you smell a chemical, if instructed to do so?
+            </div>
+            <div class="question-tag">Technique</div>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q4" value="A" />
+              Place your nose directly over the container and inhale deeply
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q4" value="B" />
+              Wave your hand gently above the opening to waft vapors toward your nose
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q4" value="C" />
+              Shake the container vigorously and then open it
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q4" value="D" />
+              Smell the chemical only after heating it
+            </label>
+          </div>
+        </div>
+        <!-- Question 5 -->
+        <div class="question">
+          <div class="question-header">
+            <div class="question-text">
+              5. Which waste should be placed in a designated organic waste container?
+            </div>
+            <div class="question-tag">Waste</div>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q5" value="A" />
+              Broken glass
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q5" value="B" />
+              Paper towels used to clean the bench
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q5" value="C" />
+              A mixture of acetone and ethanol from a reaction workup
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q5" value="D" />
+              Tap water used to rinse glassware
+            </label>
+          </div>
+        </div>
+        <!-- Question 6 -->
+        <div class="question">
+          <div class="question-header">
+            <div class="question-text">
+              6. What is the correct action if you break a piece of glassware?
+            </div>
+            <div class="question-tag">Glassware</div>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q6" value="A" />
+              Pick up the pieces with your hands and throw them in the regular trash
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q6" value="B" />
+              Leave it on the floor and move away
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q6" value="C" />
+              Notify the instructor and use a brush and dustpan to dispose in a designated glass container
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q6" value="D" />
+              Kick it under the bench so nobody steps on it
+            </label>
+          </div>
+        </div>
+        <!-- Question 7 -->
+        <div class="question">
+          <div class="question-header">
+            <div class="question-text">
+              7. Eating or drinking in the lab is:
+            </div>
+            <div class="question-tag">Conduct</div>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q7" value="A" />
+              Allowed if your experiment is finished
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q7" value="B" />
+              Allowed only in a fume hood
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q7" value="C" />
+              Strictly prohibited at all times
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q7" value="D" />
+              Allowed if you wear gloves
+            </label>
+          </div>
+        </div>
+        <!-- Question 8 -->
+        <div class="question">
+          <div class="question-header">
+            <div class="question-text">
+              8. Before starting any experiment, you should first:
+            </div>
+            <div class="question-tag">Preparation</div>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q8" value="A" />
+              Begin mixing chemicals and adjust as you go
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q8" value="B" />
+              Read the lab procedure and relevant safety information (SDS, hazards)
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q8" value="C" />
+              Ask a friend what they are doing and copy them
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q8" value="D" />
+              Turn on every piece of equipment you see
+            </label>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <div class="score-box" id="score-box">
+            Score: <strong id="score-text">Not submitted</strong>
+            <div class="score-detail" id="score-detail">
+              Answer all questions and click “Submit Answers”.
+            </div>
+          </div>
+
+          <div>
+            <button type="button" class="btn-secondary" id="reset-quiz-btn">
+              Reset Quiz
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Submit Answers
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- RESULT SECTION -->
+    <section id="result-section" aria-label="Results">
+      <div class="result-header">
+        <div>
+          <div class="metric-label">Quiz completed</div>
+          <div class="result-title">
+            Nice work, <span id="result-name"></span>!
+          </div>
+        </div>
+        <div class="result-chip">
+          Overall score: <span id="result-percent-chip"></span>
+        </div>
+      </div>
+
+      <div class="result-layout">
+        <div class="result-card">
+          <div class="metric-label" style="margin-bottom: 6px;">Score breakdown</div>
+          <canvas id="scoreChart"></canvas>
+        </div>
+
+        <div class="result-card">
+          <div class="metric-label">Summary</div>
+          <div class="result-metric-main" id="result-score-text"></div>
+          <div class="metric-label" style="margin-top: 2px;">Correct answers</div>
+
+          <div class="result-comment" id="result-comment"></div>
+
+          <div class="result-grid-mini">
+            <span class="mini-pill" id="pill-answered"></span>
+            <span class="mini-pill" id="pill-email"></span>
+            <span class="mini-pill">Total questions: <span id="pill-total"></span></span>
+          </div>
+
+          <div class="result-actions">
+            <button class="btn btn-primary" id="btn-retake">
+              Take quiz again
+            </button>
+            <button class="btn-secondary" id="btn-back-login">
+              Back to login
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Firebase & Chart.js -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCZFFw3CUuPzZGwNPObZ4WIq31wm4QCRSE",
+      authDomain: "safety-quiz-de8ee.firebaseapp.com",
+      projectId: "safety-quiz-de8ee",
+      storageBucket: "safety-quiz-de8ee.firebasestorage.app",
+      messagingSenderId: "640365300888",
+      appId: "1:640365300888:web:34f8147396c1af4920d4ed",
+      measurementId: "G-85KEB6SLYK"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const loginForm = document.getElementById("login-form");
+    const loginSection = document.getElementById("login-section");
+    const quizSection = document.getElementById("quiz-section");
+    const resultSection = document.getElementById("result-section");
+
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const nameError = document.getElementById("name-error");
+    const emailError = document.getElementById("email-error");
+
+    const studentNameSpan = document.getElementById("student-name");
+    const studentEmailSpan = document.getElementById("student-email");
+
+    const quizForm = document.getElementById("quiz-form");
+    const scoreText = document.getElementById("score-text");
+    const scoreDetail = document.getElementById("score-detail");
+    const resetQuizBtn = document.getElementById("reset-quiz-btn");
+
+    const resultName = document.getElementById("result-name");
+    const resultPercentChip = document.getElementById("result-percent-chip");
+    const resultScoreText = document.getElementById("result-score-text");
+    const resultComment = document.getElementById("result-comment");
+    const pillAnswered = document.getElementById("pill-answered");
+    const pillEmail = document.getElementById("pill-email");
+    const pillTotal = document.getElementById("pill-total");
+    const btnRetake = document.getElementById("btn-retake");
+    const btnBackLogin = document.getElementById("btn-back-login");
+
+    let scoreChart = null;
+
+    const correctAnswers = {
+      q1: "B",
+      q2: "C",
+      q3: "B",
+      q4: "B",
+      q5: "C",
+      q6: "C",
+      q7: "C",
+      q8: "B",
+    };
+    const totalQuestions = Object.keys(correctAnswers).length;
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    function switchSection(show) {
+      [loginSection, quizSection, resultSection].forEach(sec => {
+        sec.classList.remove("active");
+      });
+      show.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    async function recordActiveUser(name, email) {
+      try {
+        await db.collection("activeUsers").doc(email).set({
+          name,
+          email,
+          lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
+      } catch (err) {
+        console.error("Error recording active user:", err);
+      }
+    }
+
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      let valid = true;
+
+      nameError.style.display = "none";
+      emailError.style.display = "none";
+
+      if (!name) {
+        nameError.style.display = "block";
+        valid = false;
+      }
+      if (!email || !validateEmail(email)) {
+        emailError.style.display = "block";
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      studentNameSpan.textContent = name;
+      studentEmailSpan.textContent = email;
+
+      scoreText.textContent = "Not submitted";
+      scoreDetail.textContent =
+        "Answer all questions and click “Submit Answers”.";
+
+      recordActiveUser(name, email);
+
+      switchSection(quizSection);
+    });
+
+    async function saveResultToFirestore({ name, email, score, percentage, answered }) {
+      try {
+        await db.collection("quizResults").add({
+          name,
+          email,
+          score,
+          percentage,
+          answered,
+          totalQuestions,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+      } catch (err) {
+        console.error("Error saving result:", err);
+      }
+    }
+
+    function renderScoreChart(score, total) {
+      const correct = score;
+      const incorrect = total - score;
+
+      const ctx = document.getElementById("scoreChart").getContext("2d");
+      if (scoreChart) {
+        scoreChart.destroy();
+      }
+
+      scoreChart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: ["Correct", "Incorrect"],
+          datasets: [
+            {
+              data: [correct, incorrect],
+              backgroundColor: ["#16a34a", "#f97373"],
+              borderWidth: 1.5,
+              borderColor: "#ffffff",
+            },
+          ],
+        },
+        options: {
+          cutout: "60%",
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                color: "#374151",
+                font: { size: 11 }
+              },
+            },
+          },
+        },
+      });
+    }
+
+    function buildResultView({ name, email, score, percentage, answered }) {
+      resultName.textContent = name || "student";
+      resultPercentChip.textContent = `${percentage}%`;
+      resultScoreText.textContent = `${score} / ${totalQuestions}`;
+      pillAnswered.textContent = `Answered: ${answered} of ${totalQuestions}`;
+      pillEmail.textContent = email ? `Email: ${email}` : "No email recorded";
+      pillTotal.textContent = totalQuestions;
+
+      let comment;
+      if (percentage >= 80) {
+        comment =
+          "Excellent. You have a strong understanding of the basic laboratory safety expectations.";
+      } else if (percentage >= 60) {
+        comment =
+          "Good start. Please review the missed questions and safety notes carefully.";
+      } else {
+        comment =
+          "Please review the laboratory safety rules in detail and retake the quiz.";
+      }
+      resultComment.textContent = comment;
+
+      renderScoreChart(score, totalQuestions);
+    }
+
+    quizForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      let score = 0;
+      let answered = 0;
+
+      for (const q in correctAnswers) {
+        const selected = quizForm.querySelector(
+          `input[name="${q}"]:checked`
+        );
+        if (selected) {
+          answered++;
+          if (selected.value === correctAnswers[q]) {
+            score++;
+          }
+        }
+      }
+
+      const percentage = Math.round((score / totalQuestions) * 100);
+
+      scoreText.textContent = `${score} / ${totalQuestions} (${percentage}%)`;
+
+      if (answered < totalQuestions) {
+        scoreDetail.textContent =
+          `You answered ${answered} out of ${totalQuestions} questions. ` +
+          `Unanswered questions are counted as incorrect.`;
+      } else {
+        scoreDetail.textContent =
+          "Great job finishing the quiz. Review your score in the results section below.";
+      }
+
+      const name = studentNameSpan.textContent || nameInput.value.trim();
+      const email = studentEmailSpan.textContent || emailInput.value.trim();
+      if (name && email) {
+        saveResultToFirestore({ name, email, score, percentage, answered });
+      }
+
+      buildResultView({ name, email, score, percentage, answered });
+      switchSection(resultSection);
+    });
+
+    resetQuizBtn.addEventListener("click", function () {
+      const checkedInputs = quizForm.querySelectorAll(
+        'input[type="radio"]:checked'
+      );
+      checkedInputs.forEach((input) => (input.checked = false));
+
+      scoreText.textContent = "Not submitted";
+      scoreDetail.textContent =
+        "Answer all questions and click “Submit Answers”.";
+    });
+
+    btnRetake.addEventListener("click", () => {
+      const checkedInputs = quizForm.querySelectorAll(
+        'input[type="radio"]:checked'
+      );
+      checkedInputs.forEach((input) => (input.checked = false));
+
+      scoreText.textContent = "Not submitted";
+      scoreDetail.textContent =
+        "Answer all questions and click “Submit Answers”.";
+      switchSection(quizSection);
+    });
+
+    btnBackLogin.addEventListener("click", () => {
+      nameInput.value = "";
+      emailInput.value = "";
+      const checkedInputs = quizForm.querySelectorAll(
+        'input[type="radio"]:checked'
+      );
+      checkedInputs.forEach((input) => (input.checked = false));
+
+      scoreText.textContent = "Not submitted";
+      scoreDetail.textContent =
+        "Answer all questions and click “Submit Answers”.";
+      switchSection(loginSection);
+    });
+  </script>
+</body>
+</html>
